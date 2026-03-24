@@ -7,9 +7,9 @@
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--font-sans: var(--font-sans);
-	--font-mono: var(--font-geist-mono);
-	--font-heading: var(--font-sans);
+	--font-sans: var(--font-inter);
+	--font-mono: var(--font-inter);
+	--font-heading: var(--font-inter);
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,8 +49,8 @@
 }
 
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
+	--background: #02050d;
+	--foreground: oklch(0.985 0 0);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
@@ -118,13 +118,98 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+	* {
+		@apply border-border outline-ring/50;
 	}
-  body {
-    @apply bg-background text-foreground;
+	html {
+		@apply font-sans;
+		scroll-behavior: smooth;
+		scrollbar-width: thin;
+		scrollbar-color: #38bdf8 rgba(2, 5, 13, 0.72);
 	}
-  html {
-    @apply font-sans;
+	body {
+		@apply bg-background text-foreground;
+		min-height: 100vh;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(2, 5, 13, 0.82);
+}
+
+::-webkit-scrollbar-thumb {
+	border: 2px solid rgba(2, 5, 13, 0.9);
+	border-radius: 999px;
+	background: linear-gradient(180deg, #38bdf8 0%, #818cf8 48%, #14b8a6 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #67e8f9 0%, #a78bfa 48%, #2dd4bf 100%);
+}
+
+@media (pointer: fine) {
+	html,
+	body,
+	a,
+	button,
+	iframe,
+	object,
+	[role="button"],
+	input,
+	textarea,
+	select,
+	summary {
+		cursor: none !important;
+	}
+
+	[data-native-cursor],
+	[data-native-cursor] * {
+		cursor: auto !important;
+	}
+}
+
+.custom-cursor {
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 90;
+}
+
+.custom-cursor-ring,
+.custom-cursor-dot {
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	transition: opacity 180ms ease;
+	will-change: transform, opacity;
+}
+
+.custom-cursor-ring {
+	height: 34px;
+	width: 34px;
+	border: 1px solid rgba(56, 189, 248, 0.78);
+	border-radius: 999px;
+	background: rgba(56, 189, 248, 0.08);
+	box-shadow: 0 0 28px rgba(56, 189, 248, 0.18);
+	backdrop-filter: blur(10px);
+}
+
+.custom-cursor-dot {
+	height: 8px;
+	width: 8px;
+	border-radius: 999px;
+	background: linear-gradient(180deg, #67e8f9 0%, #a78bfa 100%);
+	box-shadow: 0 0 18px rgba(129, 140, 248, 0.45);
+}
+
+@media (pointer: coarse) {
+	.custom-cursor {
+		display: none;
 	}
 }
