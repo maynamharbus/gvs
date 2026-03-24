@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Generate Verify Select pipeline diagram</title>
+  <desc id="desc">An animated pipeline showing pre-process, generate, verify, and select stages for the Generate Verify Select framework.</desc>
+  <style><![CDATA[
+    text {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .doc-winner {
+      animation: moveWinner 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    @keyframes moveWinner {
+      0%, 5% { transform: translate(140px, 350px) scale(0); opacity: 0; }
+      10% { transform: translate(140px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      20%, 25% { transform: translate(360px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      35%, 40% { transform: translate(620px, 200px) scale(1); opacity: 1; fill: #6ee7b7; }
+      50%, 55% { transform: translate(800px, 200px) scale(1); opacity: 1; fill: #34d399; }
+      65%, 75% { transform: translate(1050px, 310px) scale(1); opacity: 1; fill: #10b981; }
+      85%, 92% { transform: translate(1280px, 350px) scale(1.3); opacity: 1; fill: #10b981; }
+      96%, 100% { transform: translate(1280px, 350px) scale(1.3); opacity: 0; fill: #10b981; }
+    }
+
+    .doc-err-gate {
+      animation: moveErrGate 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    @keyframes moveErrGate {
+      0%, 5% { transform: translate(140px, 350px) scale(0); opacity: 0; }
+      10% { transform: translate(140px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      20%, 25% { transform: translate(360px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      35% { transform: translate(620px, 300px) scale(1); opacity: 1; fill: #ef4444; }
+      43%, 100% { transform: translate(620px, 330px) scale(0.8); opacity: 0; fill: #ef4444; }
+    }
+
+    .doc-err-nli {
+      animation: moveErrNli 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    @keyframes moveErrNli {
+      0%, 5% { transform: translate(140px, 350px) scale(0); opacity: 0; }
+      10% { transform: translate(140px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      20%, 25% { transform: translate(360px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      35%, 40% { transform: translate(620px, 400px) scale(1); opacity: 1; fill: #6ee7b7; }
+      50% { transform: translate(800px, 400px) scale(1); opacity: 1; fill: #ef4444; }
+      58%, 100% { transform: translate(800px, 430px) scale(0.8); opacity: 0; fill: #ef4444; }
+    }
+
+    .doc-low-fit {
+      animation: moveLowFit 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    @keyframes moveLowFit {
+      0%, 5% { transform: translate(140px, 350px) scale(0); opacity: 0; }
+      10% { transform: translate(140px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      20%, 25% { transform: translate(360px, 350px) scale(1); opacity: 1; fill: #f8fafc; }
+      35%, 40% { transform: translate(620px, 500px) scale(1); opacity: 1; fill: #6ee7b7; }
+      50%, 55% { transform: translate(800px, 500px) scale(1); opacity: 1; fill: #34d399; }
+      65%, 72% { transform: translate(1050px, 390px) scale(1); opacity: 1; fill: #ef4444; }
+      80%, 100% { transform: translate(1050px, 420px) scale(0.8); opacity: 0; fill: #ef4444; }
+    }
+
+    .popup {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .lbl-gate { animation: popGate 14s ease-in-out infinite; }
+
+    @keyframes popGate {
+      33%, 45% { opacity: 1; transform: translateY(-5px); }
+      0%, 30%, 48%, 100% { opacity: 0; transform: translateY(0); }
+    }
+
+    .lbl-nli { animation: popNli 14s ease-in-out infinite; }
+
+    @keyframes popNli {
+      48%, 60% { opacity: 1; transform: translateY(-5px); }
+      0%, 45%, 63%, 100% { opacity: 0; transform: translateY(0); }
+    }
+
+    .lbl-fit-win { animation: popFitWin 14s ease-in-out infinite; }
+
+    @keyframes popFitWin {
+      66%, 80% { opacity: 1; transform: translateY(-5px); }
+      0%, 63%, 83%, 100% { opacity: 0; transform: translateY(0); }
+    }
+
+    .lbl-fit-low { animation: popFitLow 14s ease-in-out infinite; }
+
+    @keyframes popFitLow {
+      66%, 76% { opacity: 1; transform: translateY(-5px); }
+      0%, 63%, 80%, 100% { opacity: 0; transform: translateY(0); }
+    }
+
+    .final-check {
+      animation: popupCheck 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      opacity: 0;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    @keyframes popupCheck {
+      86%, 95% { opacity: 1; transform: scale(1); }
+      0%, 83%, 98%, 100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    .flow-path {
+      stroke-dasharray: 6;
+      animation: flow 3s linear infinite;
+    }
+
+    @keyframes flow {
+      from { stroke-dashoffset: 24; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .pulse-slow { animation: pulseBg 4s ease-in-out infinite; }
+
+    @keyframes pulseBg {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(1.05); }
+    }
+  ]]></style>
+  <defs>
+    <linearGradient id="surface-gradient" x1="0" y1="0" x2="1400" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <filter id="shadow-sm" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <filter id="shadow-lg" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <g id="doc-icon">
+      <rect width="32" height="42" rx="4" filter="url(#shadow-sm)"/>
+      <line x1="8" y1="12" x2="24" y2="12" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="8" y1="18" x2="24" y2="18" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="8" y1="24" x2="16" y2="24" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <path id="tooltip-arrow" d="M -6,-6 L 0,0 L 6,-6 Z" fill="#1e293b"/>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1399" height="699" rx="20" fill="url(#surface-gradient)" stroke="#1e293b"/>
+
+  <rect x="40" y="80" width="180" height="560" rx="24" fill="#1e293b" opacity="0.4"/>
+  <text x="130" y="120" fill="#64748b" font-size="12" font-weight="600" letter-spacing="2" text-anchor="middle">PRE-PROCESS</text>
+
+  <rect x="250" y="80" width="220" height="560" rx="24" fill="#1e293b" opacity="0.4"/>
+  <text x="360" y="120" fill="#64748b" font-size="12" font-weight="600" letter-spacing="2" text-anchor="middle">GENERATE</text>
+
+  <rect x="500" y="80" width="380" height="560" rx="24" fill="#1e293b" opacity="0.4"/>
+  <text x="690" y="120" fill="#64748b" font-size="12" font-weight="600" letter-spacing="2" text-anchor="middle">VERIFY</text>
+
+  <rect x="910" y="80" width="280" height="560" rx="24" fill="#1e293b" opacity="0.4"/>
+  <text x="1050" y="120" fill="#64748b" font-size="12" font-weight="600" letter-spacing="2" text-anchor="middle">SELECT</text>
+
+  <path
+    d="M 140 350 L 360 350
+       M 360 350 C 450 350, 480 200, 620 200
+       M 360 350 C 450 350, 480 300, 620 300
+       M 360 350 C 450 350, 480 400, 620 400
+       M 360 350 C 450 350, 480 500, 620 500
+       M 620 200 L 800 200 M 620 400 L 800 400 M 620 500 L 800 500
+       M 800 200 C 900 200, 950 310, 1050 310
+       M 800 500 C 900 500, 950 390, 1050 390
+       M 1050 310 C 1150 310, 1180 350, 1280 350"
+    stroke="#334155"
+    stroke-width="3"
+    fill="none"
+    class="flow-path"
+    opacity="0.6"
+  />
+
+  <g transform="translate(130, 180)">
+    <rect x="-50" y="-30" width="100" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow-sm)"/>
+    <text x="0" y="-10" fill="#cbd5e1" font-size="11" text-anchor="middle">Data Sources</text>
+    <rect x="-40" y="0" width="80" height="18" rx="4" fill="#334155"/>
+    <text x="0" y="13" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">Notes &amp; EHR</text>
+    <rect x="-40" y="22" width="80" height="18" rx="4" fill="#334155"/>
+    <text x="0" y="35" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">Radiology</text>
+  </g>
+
+  <rect x="90" y="270" width="80" height="24" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="1" stroke-dasharray="4"/>
+  <text x="130" y="286" fill="#fca5a5" font-size="10" text-anchor="middle">Section Slicing</text>
+
+  <circle cx="140" cy="350" r="35" fill="#1e293b" stroke="#3b82f6" stroke-width="2" filter="url(#shadow-sm)"/>
+  <path d="M 125 350 L 155 350 M 125 340 L 155 340 M 125 360 L 145 360" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+  <text x="140" y="410" fill="#f8fafc" font-size="14" font-weight="500" text-anchor="middle">Sliced Input</text>
+  <text x="140" y="430" fill="#94a3b8" font-size="12" text-anchor="middle">Discharge Note</text>
+
+  <circle cx="360" cy="350" r="70" fill="#0ea5e9" opacity="0.1" class="pulse-slow" filter="url(#glow-blue)"/>
+  <rect x="300" y="300" width="120" height="100" rx="20" fill="#0f172a" stroke="#0ea5e9" stroke-width="2" filter="url(#shadow-lg)"/>
+  <text x="360" y="340" fill="#38bdf8" font-size="16" font-weight="600" text-anchor="middle">Base LLMs</text>
+  <rect x="315" y="350" width="90" height="20" rx="6" fill="#0ea5e9" opacity="0.15"/>
+  <text x="360" y="364" fill="#7dd3fc" font-size="11" font-weight="500" text-anchor="middle">Llama 3 / PRIMERA</text>
+  <text x="360" y="430" fill="#f8fafc" font-size="14" font-weight="500" text-anchor="middle">Candidate Pool</text>
+  <text x="360" y="450" fill="#94a3b8" font-size="12" text-anchor="middle">Diverse Outputs</text>
+
+  <rect x="580" y="160" width="80" height="400" rx="40" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow-lg)"/>
+  <line x1="620" y1="200" x2="620" y2="520" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6" opacity="0.5"/>
+  <rect x="560" y="580" width="120" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="620" y="600" fill="#fcd34d" font-size="12" font-weight="600" text-anchor="middle">Hard Rules Gate</text>
+  <text x="620" y="618" fill="#94a3b8" font-size="11" text-anchor="middle">Meds, Nums, Negs</text>
+
+  <rect x="760" y="160" width="80" height="400" rx="40" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" filter="url(#shadow-lg)"/>
+  <path d="M 790 200 Q 810 360 790 520" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+  <rect x="740" y="580" width="120" height="50" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="800" y="600" fill="#d8b4fe" font-size="12" font-weight="600" text-anchor="middle">NLI Verifier</text>
+  <text x="800" y="618" fill="#94a3b8" font-size="11" text-anchor="middle">Context Checking</text>
+
+  <rect x="960" y="180" width="180" height="60" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="1050" y="205" fill="#f472b6" font-size="13" font-weight="600" text-anchor="middle">Evolutionary Optimizer</text>
+  <text x="1050" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Learns objective weights</text>
+  <path d="M 1050 245 L 1050 280" stroke="#f472b6" stroke-width="2" stroke-dasharray="4" opacity="0.5"/>
+
+  <circle cx="1050" cy="350" r="70" fill="#0f172a" stroke="#ec4899" stroke-width="3" filter="url(#shadow-lg)"/>
+  <path d="M 1020 320 L 1080 320 L 1060 370 L 1040 370 Z" fill="#ec4899" opacity="0.1"/>
+  <text x="1050" y="348" fill="#f8fafc" font-size="14" font-weight="600" text-anchor="middle">Fitness</text>
+  <text x="1050" y="364" fill="#fbcfe8" font-size="11" text-anchor="middle">Scoring</text>
+  <text x="1050" y="460" fill="#f8fafc" font-size="14" font-weight="500" text-anchor="middle">Constraint-Driven</text>
+  <text x="1050" y="480" fill="#94a3b8" font-size="12" text-anchor="middle">Selection</text>
+
+  <rect x="1230" y="300" width="100" height="100" rx="20" fill="#0f172a" stroke="#10b981" stroke-width="3" stroke-dasharray="8" filter="url(#shadow-lg)"/>
+  <text x="1280" y="430" fill="#34d399" font-size="15" font-weight="600" text-anchor="middle">Safe BHC / DI</text>
+  <text x="1280" y="450" fill="#94a3b8" font-size="12" text-anchor="middle">Verified Output</text>
+
+  <g class="doc-winner">
+    <use href="#doc-icon" x="-16" y="-21"/>
+  </g>
+  <g class="doc-err-gate">
+    <use href="#doc-icon" x="-16" y="-21"/>
+  </g>
+  <g class="doc-err-nli">
+    <use href="#doc-icon" x="-16" y="-21"/>
+  </g>
+  <g class="doc-low-fit">
+    <use href="#doc-icon" x="-16" y="-21"/>
+  </g>
+
+  <g transform="translate(620, 240)">
+    <g class="popup lbl-gate">
+      <rect x="-60" y="-36" width="120" height="28" rx="14" fill="#1e293b" stroke="#ef4444" stroke-width="1" filter="url(#shadow-sm)"/>
+      <use href="#tooltip-arrow" x="0" y="-12"/>
+      <circle cx="-45" cy="-22" r="6" fill="#ef4444"/>
+      <path d="M -48 -25 L -42 -19 M -42 -25 L -48 -19" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="10" y="-18" fill="#f8fafc" font-size="11" font-weight="500" text-anchor="middle">Medication Err</text>
+    </g>
+  </g>
+
+  <g transform="translate(800, 340)">
+    <g class="popup lbl-nli">
+      <rect x="-60" y="-36" width="120" height="28" rx="14" fill="#1e293b" stroke="#ef4444" stroke-width="1" filter="url(#shadow-sm)"/>
+      <use href="#tooltip-arrow" x="0" y="-12"/>
+      <circle cx="-45" cy="-22" r="6" fill="#ef4444"/>
+      <path d="M -48 -25 L -42 -19 M -42 -25 L -48 -19" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="10" y="-18" fill="#f8fafc" font-size="11" font-weight="500" text-anchor="middle">Contradiction</text>
+    </g>
+  </g>
+
+  <g transform="translate(1050, 250)">
+    <g class="popup lbl-fit-win">
+      <rect x="-50" y="-36" width="100" height="28" rx="14" fill="#1e293b" stroke="#10b981" stroke-width="1" filter="url(#shadow-sm)"/>
+      <use href="#tooltip-arrow" x="0" y="-12"/>
+      <circle cx="-35" cy="-22" r="6" fill="#10b981"/>
+      <path d="M -38 -22 L -36 -19 L -32 -25" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <text x="10" y="-18" fill="#f8fafc" font-size="11" font-weight="500" text-anchor="middle">Score: 0.94</text>
+    </g>
+  </g>
+
+  <g transform="translate(1050, 430)">
+    <g class="popup lbl-fit-low">
+      <rect x="-50" y="0" width="100" height="28" rx="14" fill="#1e293b" stroke="#ef4444" stroke-width="1" filter="url(#shadow-sm)"/>
+      <path d="M -6,1 L 0,-5 L 6,1 Z" fill="#1e293b"/>
+      <polyline points="-6,1 0,-5 6,1" fill="none" stroke="#ef4444" stroke-width="1"/>
+      <circle cx="-35" cy="14" r="6" fill="#ef4444"/>
+      <path d="M -38 11 L -32 17 M -32 11 L -38 17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="10" y="18" fill="#f8fafc" font-size="11" font-weight="500" text-anchor="middle">Score: 0.41</text>
+    </g>
+  </g>
+
+  <g transform="translate(1280, 350)">
+    <g class="final-check">
+      <circle cx="0" cy="0" r="28" fill="#10b981" filter="url(#shadow-lg)"/>
+      <path d="M -10 2 L -2 10 L 12 -6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
